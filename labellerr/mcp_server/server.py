@@ -15,6 +15,13 @@ import uuid
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 
+# Add the parent directory to Python path to allow imports
+# This is needed when the MCP server is run directly
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(os.path.dirname(current_dir))
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
+
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp.types import (

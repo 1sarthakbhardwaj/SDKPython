@@ -73,7 +73,7 @@ def check_and_prompt_credentials():
 
     for env_var, (display_name, value) in required_vars.items():
         if not value:
-            print(f"❌ {env_var} not found")
+            print(f"❌ {display_name} not found")
             missing.append((env_var, display_name))
         else:
             print(f"✓ {display_name} found")
@@ -105,11 +105,11 @@ def check_and_prompt_credentials():
                             f.write("# Labellerr API Credentials\n")
 
                     set_key(env_file, env_var, value)
-                    print(f"  ✓ Saved {env_var} to {env_file}")
+                    print(f"  ✓ Saved {display_name} to .env file")
                 except Exception as e:
                     print(f"  ⚠ Warning: Could not save to .env file: {e}")
             else:
-                print(f"  ⚠ Warning: {env_var} left empty")
+                print(f"  ⚠ Warning: {display_name} left empty")
 
     # Check if all required vars are now available (re-check after prompting)
     api_key = os.getenv('API_KEY')
